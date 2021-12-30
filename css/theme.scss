@@ -32,7 +32,7 @@ body {
 .sidenav {
   width: 100%;
   height: 100%;
-  z-index: 120;
+  z-index: 0;
   .sidenav-header {
     width: 300px;
     background: $wcolor;
@@ -149,6 +149,8 @@ body {
 }
 
 .header {
+  position: relative;
+  width: 100%;
   background: $wcolor;
   @include box-shadow(0 0 4px #666);
   padding: 10px 0;
@@ -210,8 +212,9 @@ body {
   }
 }
 
-.fixed-nav {
+.menu-on-scroll {
   @include position-fixed;
+  @include animation(slide-down 2s ease);
 }
 
 .footer {
@@ -484,6 +487,49 @@ body {
     display: block;
     @include opacity(1);
     @include transition(opacity, 0.5s, linear);
+  }
+}
+.mobile-search-box {
+  @include position-fixed;
+  background: $wcolor;
+  display: none;
+  padding: 15px 10px;
+  transform: translateY(-100%);
+  @include transition(transform, 0.4s, linear);
+  z-index: 150;
+}
+.footer-fixed-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: $wcolor;
+  display: none;
+  @include align-items(center);
+  @include justify-content(space-between);
+  padding: 15px;
+  transform: translateY(100%);
+  @include transition(transform, 0.4s, linear);
+  z-index: 100;
+
+  div {
+    cursor: pointer;
+  }
+  .fixed-nav-cart-icon {
+    position: relative;
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      background: $theme-color;
+      border-radius: 50%;
+      color: $wcolor;
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(center);
+      font-size: 12px;
+    }
   }
 }
 
@@ -778,18 +824,21 @@ body {
       }
       .sort-mFilter {
         .sort {
-          @include flexbox;
-          @include align-items(center);
           border-top: 1px solid #ddd;
           border-bottom: 1px solid #ddd;
           padding: 10px 15px;
           .sort-label {
+            @include flexbox;
+            @include align-items(center);
             color: $gcolor;
             margin-right: 15px;
             text-transform: capitalize;
-          }
-          .sort-option {
-            select{
+
+            .text {
+              margin-right: 5px;
+            }
+            select {
+              width: auto;
               border-radius: 0;
               box-shadow: none;
             }
@@ -800,8 +849,6 @@ body {
         }
       }
       .collection-products {
-        @include flexbox;
-        @include flex-wrap(wrap);
         padding: 10px 20px 0 20px;
         .product-box {
           margin-bottom: 10px;

@@ -43,6 +43,7 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
     right: 0;
     left: -100%;
     @include transition(left, 0.5s, linear);
+    z-index: 120;
   }
   .header {
     .sidenav-toggle {
@@ -83,20 +84,19 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
       text-align: center;
     }
   }
-  .footer-fixed-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: $wcolor;
-    @include flexbox;
-    @include align-items(center);
-    @include justify-content(space-between);
-    padding: 15px;
-    z-index: 100;
-
-    div {
-      cursor: pointer;
+  .mini-cart {
+    display: none;
+  }
+  .sidebar-cart-holder {
+    .sidebar-cart {
+      width: 100%;
     }
+  }
+  .mobile-search-box {
+    display: block;
+  }
+  .footer-fixed-nav {
+    @include flexbox;
   }
 
   // Index Page
@@ -179,8 +179,8 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
       .collection-info {
         .fixed-sort {
           position: fixed;
-          left: 0;
           right: 0;
+          left: 0;
           bottom: 0;
           background: $wcolor;
           z-index: 10;
@@ -209,65 +209,9 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
               .icon {
                 margin-right: 10px;
               }
-            }
-            .sort-option {
-              position: fixed;
-              left: 0;
-              right: 0;
-              bottom: -100%;
-              width: 100%;
-              height: 100%;
-              background: $wcolor;
-              z-index: 55;
-              @include transition(bottom, 0.5s, linear);
-
-              .sort-option-header {
-                border-bottom: 1px solid #ddd;
-                @include flexbox;
-                @include align-items(center);
-                @include justify-content(space-between);
-                padding: 5px 15px;
-
-                .text {
-                  font-size: 17px;
-                  font-weight: 500;
-                  text-transform: capitalize;
-                }
-                .icon {
-                  font-size: 30px;
-                }
+              select {
+                width: 100%;
               }
-              .sort-option-value {
-                margin-top: 15px;
-                padding: 0 20px;
-
-                .radio-inline {
-                  display: block;
-                  font-size: 16px;
-                  margin-bottom: 15px;
-
-                  input[type="radio"] {
-                    appearance: auto;
-                    -webkit-appearance: auto;
-                    -moz-appearance: auto;
-                    -ms-appearance: auto;
-                    margin-left: -20px;
-                  }
-                }
-              }
-            }
-            .sort-overlay {
-              position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
-              width: 100%;
-              height: 100%;
-              background: rgba(0, 0, 0, 0.5);
-              display: none;
-              @include opacity(0);
-              z-index: -1;
-              @include transition(opacity, 0.2s, linear);
             }
           }
           .mSort-show {
@@ -292,27 +236,6 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
             .filter-close {
               margin-right: 10px;
             }
-          }
-        }
-        .collection-products {
-          padding: 0;
-          .product-box {
-            border-right: 1px solid transparent;
-            border-bottom: 1px solid #ddd;
-            border-radius: 0;
-            flex: 0 0 50%;
-            margin: 0;
-
-            .action-icon {
-              background: #f4f4f4;
-              visibility: visible;
-            }
-          }
-          .product-box:nth-child(odd) {
-            border-right: 1px solid #ddd;
-          }
-          .product-box:nth-last-child(-n + 2) {
-            border-bottom: 0;
           }
         }
       }
@@ -349,9 +272,12 @@ $desktop: "(min-width: 1201px) and (max-width: 1900px)";
             }
           }
         }
-        .cart-buttons {
-          button {
-            flex: 0.5;
+        .buttons-icons {
+          display: block;
+
+          .buttons {
+            width: 100%;
+            margin-bottom: 10px;
           }
         }
       }

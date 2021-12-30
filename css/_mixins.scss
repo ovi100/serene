@@ -20,6 +20,22 @@
   animation: #{$avalue};
 }
 
+@mixin keyframes($aname) {
+  @-webkit-keyframes #{$aname} {
+    @content;
+  }
+  @-o-keyframes #{$aname} {
+    @content;
+  }
+  @-moz-keyframes #{$aname} {
+    @content;
+  }
+  @keyframes #{$aname} {
+    @content;
+  }
+}
+
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -75,21 +91,6 @@
 @mixin flex-wrap($value) {
   -ms-flex-wrap: $value;
   flex-wrap: $value;
-}
-
-@mixin keyframes($aname) {
-  @-webkit-keyframes #{$aname} {
-    @content;
-  }
-  @-o-keyframes #{$aname} {
-    @content;
-  }
-  @-moz-keyframes #{$aname} {
-    @content;
-  }
-  @keyframes #{$aname} {
-    @content;
-  }
 }
 
 @mixin opacity($value) {

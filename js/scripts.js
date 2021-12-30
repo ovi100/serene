@@ -2,19 +2,21 @@ $(document).ready(function () {
   $(window).scroll(function () {
     if ($(this).scrollTop() > 0) {
       $('.scrollup').fadeIn();
-      $(".header").addClass("fixed-nav");
+      $(".header").addClass("menu-on-scroll");
       if ($(window).width() > 768) {
         $(".header .searchbox-holder").fadeIn(0);
         $(".header .offer-text").fadeOut(0);
       }
+      $(".footer-fixed-nav").removeClass("slide");
 
     } else {
       $('.scrollup').fadeOut();
-      $(".header").removeClass("fixed-nav");
+      $(".header").removeClass("menu-on-scroll");
       if ($(window).width() > 768) {
         $(".header .offer-text").fadeIn(0);
         $(".header .searchbox-holder").fadeOut(0);
       }
+      $(".footer-fixed-nav").addClass("slide");
     }
   });
 
@@ -30,6 +32,16 @@ $(document).ready(function () {
       $("body").removeClass('scroll-off');
       $(".sidenav").removeClass("show-sidenav");
     });
+
+    $(".fixed-nav-search-icon").click(function (e) {
+      e.preventDefault();
+      $(".mobile-search-box").toggleClass("slide");
+    });
+
+    /*$(".fixed-nav-search-icon").click(function (e) {
+      e.preventDefault();
+      $(".mobile-search-box").slideToggle("slow");
+    });*/
   }
 
   if ($(window).width() < 993) {
@@ -56,7 +68,7 @@ $(document).ready(function () {
   });
 
   // Sidebar Cart JS
-  $(".mini-cart").click(function (event) {
+  $(".mini-cart,.fixed-nav-cart-icon").click(function (event) {
     event.preventDefault();
     $("body").addClass('scroll-off');
     $(".sidebar-cart-holder").addClass("show-sidebar-cart");
@@ -66,18 +78,6 @@ $(document).ready(function () {
     event.preventDefault();
     $("body").removeClass('scroll-off');
     $(".sidebar-cart-holder").removeClass("show-sidebar-cart");
-  });
-
-  $(".mSearchBox").click(function (event) {
-    event.preventDefault();
-    $("body").addClass('scroll-off');
-    $(".mSearch-option").fadeIn("slow");
-  });
-
-  $(".mSearch-close").click(function (event) {
-    event.preventDefault();
-    $("body").removeClass('scroll-off');
-    $(".mSearch-option").fadeOut("slow");
   });
 
   $(".search-input").focus(function () {
